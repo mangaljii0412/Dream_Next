@@ -1,15 +1,15 @@
+import { AddCircleOutline, RemoveCircleOutline } from '@mui/icons-material';
 import React, { useRef, useState } from 'react';
-import Navbar from "../component/Navbar";
-import "../styles/CreateListing.scss";
-import { categories, types , facilities } from '../data';
-import { RemoveCircleOutline, AddCircleOutline } from '@mui/icons-material';
-import variables from '../styles/variables.scss';
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-import { IoIosImages } from "react-icons/io";
 import { BiTrash } from "react-icons/bi";
+import { IoIosImages } from "react-icons/io";
 import { useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import Footer from '../component/Footer';
+import Navbar from "../component/Navbar";
+import { categories, facilities, types } from '../data';
+import "../styles/CreateListing.scss";
+import variables from '../styles/variables.scss';
 
 const CreateListing = () => {
     const [category, setCategory] = useState("");
@@ -112,7 +112,7 @@ const CreateListing = () => {
                 listingForm.append("listingPhotos", photo);
             });
 
-            const response = await fetch("http://localhost:3001/properties/create", {
+            const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/properties/create`, {
                 method: "POST",
                 body: listingForm,
             });

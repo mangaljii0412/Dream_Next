@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import "../styles/List.scss"
 import { useDispatch, useSelector } from 'react-redux'
-import  Navbar from "../component/Navbar"
+import Footer from '../component/Footer'
 import ListingCard from '../component/ListingCard'
-import { setPropertyList } from '../redux/state'
 import Loader from '../component/Loader'
-import Footer from '../component/Footer';
+import Navbar from "../component/Navbar"
+import { setPropertyList } from '../redux/state'
+import "../styles/List.scss"
 
 const PropertyList = () => {
     const [loading,setLoading] = useState(true)
@@ -15,7 +15,7 @@ const PropertyList = () => {
 
     const getPropertyList = async () => {
         try{
-            const response = await fetch(`http://localhost:3001/users/${user._id}/properties`,{
+            const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/users/${user._id}/properties`,{
                 method :"GET"
             })
             const data = await response.json();

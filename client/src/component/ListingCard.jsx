@@ -1,9 +1,9 @@
-import { ArrowBackIosNew, ArrowForwardIos , Favorite} from "@mui/icons-material";
+import { ArrowBackIosNew, ArrowForwardIos, Favorite } from "@mui/icons-material";
 import React, { useState } from 'react';
-import { useNavigate } from "react-router-dom";
-import "../styles/ListingCard.scss";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { setWishList } from "../redux/state";
+import "../styles/ListingCard.scss";
 
 const ListingCard = ({
     listingId, creator , listingPhotos, city, province, country, category, type, price,startDate,endDate,totalPrice,booking
@@ -36,7 +36,7 @@ const ListingCard = ({
     // const patchWishList = async (e) =>{
     //     e.stopPropagation()
         
-    //     const response = await fetch(`http://localhost:3001/users/${user._id}/${listingId}`,{
+    //     const response = await fetch(`${process.env.REACT_APP_SERVER_URL_URL_URL}/users/${user._id}/${listingId}`,{
     //         method: "PATCH",
     //         headers: {
     //             "Content-Type": "application/json",
@@ -51,7 +51,7 @@ const ListingCard = ({
         if(user?._id !== creator._id){
         // console.log('patchWishList called');
     
-        const response = await fetch(`http://localhost:3001/users/${user._id}/${listingId}`, {
+        const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/users/${user._id}/${listingId}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -75,7 +75,7 @@ const ListingCard = ({
                 <div className='slider' style={{transform: `translateX(-${currentIndex*100}%)`}}>
                     { listingPhotos?.map((photo,index) =>(
                         <div key={index} className="slide" >
-                            <img src={`http://localhost:3001/${photo}`} alt = {`photo ${index+1}`}/>
+                            <img src={`${process.env.REACT_APP_SERVER_URL}/${photo}`} alt = {`photo ${index+1}`}/>
                             <div className='prev-button' onClick={(e) => {goToPrevSlide(e)}}>
                                 <ArrowBackIosNew sx={{fontSize: "15px"}}/>
                             </div>

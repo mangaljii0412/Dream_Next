@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from "react-router-dom";
-import "../styles/ListingDetails.scss";
-import { facilities } from "../data";
+import { DateRange } from "react-date-range";
 import "react-date-range/dist/styles.css";
 import 'react-date-range/dist/theme/default.css';
-import { DateRange } from "react-date-range";
+import { useSelector } from 'react-redux';
+import { useNavigate, useParams } from "react-router-dom";
+import Footer from '../component/Footer';
 import Loader from "../component/Loader";
 import Navbar from "../component/Navbar";
-import { useSelector } from 'react-redux';
-import Footer from '../component/Footer';
+import { facilities } from "../data";
+import "../styles/ListingDetails.scss";
 
 const ListingDetails = () => {
     const [loading, setLoading] = useState(true);
@@ -17,7 +17,7 @@ const ListingDetails = () => {
 
     const getListingDetails = async () => {
         try {
-            const response = await fetch(`http://localhost:3001/properties/${listingId}`, {
+            const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/properties/${listingId}`, {
                 method: "GET",
             });
             const data = await response.json();
@@ -63,7 +63,7 @@ const ListingDetails = () => {
                 endDate: dateRange[0].endDate.toDateString(),
                 totalPrice: listing.price * dayCount,
             };
-            const response = await fetch("http://localhost:3001/bookings/create", {
+            const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/bookings/create`, {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
@@ -95,7 +95,7 @@ const ListingDetails = () => {
                 </div>
                 <div className='photos'>
                     {listing.listingPhotos.map((item, index) => (
-                        <img key={index} src={`http://localhost:3001/${item.replaceAll("\\", "/")}`} alt="listing photo" />
+                        <img key={index} src={`${process.env.REACT_APP_SERVER_URL}/${item.replaceAll("\\", "/")}`} alt="listing photo" />
                     ))}
                 </div>
 

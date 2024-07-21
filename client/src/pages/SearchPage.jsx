@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import "../styles/List.scss"
-import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { setListings } from '../redux/state'
-import Navbar from '../component/Navbar'
+import { useParams } from 'react-router-dom'
+import Footer from '../component/Footer'
 import ListingCard from '../component/ListingCard'
 import Loader from '../component/Loader'
-import Footer from '../component/Footer';
+import Navbar from '../component/Navbar'
+import { setListings } from '../redux/state'
+import "../styles/List.scss"
 
 
 const SearchPage = () => {
@@ -16,7 +16,7 @@ const SearchPage = () => {
     const dispatch = useDispatch();
     const getSearchListings = async ()=>{
         try{
-            const response = await fetch(`http://localhost:3001/properties/search/${search}`,{
+            const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/properties/search/${search}`,{
                 method: "GET"
             })
             const data = await response.json()

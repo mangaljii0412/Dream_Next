@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import "../styles/Login.scss";
-import { setLogin } from "../redux/state";
-import {useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { setLogin } from "../redux/state";
+import "../styles/Login.scss";
 const Loginpage = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -12,7 +12,7 @@ const Loginpage = () => {
     const handleSubmit = async (e)=>{
         e.preventDefault();
         try{
-            const response = await fetch("http://localhost:3001/auth/login",{
+            const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/auth/login`,{
                 method:"POST",
                 headers:{
                     "Content-Type" : "application/json"

@@ -1,12 +1,12 @@
-import React, { useState , useEffect} from 'react'
-import "../styles/List.scss"
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import Footer from '../component/Footer';
+import ListingCard from '../component/ListingCard';
 import Loader from '../component/Loader';
 import Navbar from '../component/Navbar';
-import { useParams } from 'react-router-dom';
-import { useSelector  , useDispatch} from 'react-redux';
 import { setListings } from '../redux/state';
-import ListingCard from '../component/ListingCard';
-import Footer from '../component/Footer';
+import "../styles/List.scss";
 
 
 const CategoryPage = () => {
@@ -19,7 +19,7 @@ const CategoryPage = () => {
 
     const getFeedListings = async () => {
         try {
-            const response = await fetch(`http://localhost:3001/properties?category=${category}` ,
+            const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/properties?category=${category}` ,
                 {
                     method: "GET",
                 }

@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import Loader from '../component/Loader';
-import "../styles/List.scss"
-import Navbar from '../component/Navbar';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setReservationList } from '../redux/state';
-import ListingCard from '../component/ListingCard';
 import Footer from '../component/Footer';
+import ListingCard from '../component/ListingCard';
+import Loader from '../component/Loader';
+import Navbar from '../component/Navbar';
+import { setReservationList } from '../redux/state';
+import "../styles/List.scss";
 
 const ReservationList = () => {
     const [loading,setLoading] = useState(true);
@@ -14,7 +14,7 @@ const ReservationList = () => {
     const dispatch = useDispatch();
     const getReservationList = async () =>{
         try{
-            const response = await fetch(`http://localhost:3001/users/${userId}/reservations`,{
+            const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/users/${userId}/reservations`,{
                 method: "GET",
             })
             const data = await response.json();

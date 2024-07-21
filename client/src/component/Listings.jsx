@@ -14,9 +14,10 @@ const Listings = () => {
 
     const getFeedListings = async () => {
         try {
+            console.log(process.env.REACT_APP_SERVER_URL);
             const response = await fetch(
                 selectedCategory !== "All" ?
-                    `http://localhost:3001/properties?category=${selectedCategory}` : "http://localhost:3001/properties",
+                    `${process.env.REACT_APP_SERVER_URL}/properties?category=${selectedCategory}` : `${process.env.REACT_APP_SERVER_URL}/properties`,
                 {
                     method: "GET",
                 }
