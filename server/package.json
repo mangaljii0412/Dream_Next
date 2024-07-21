@@ -13,9 +13,12 @@
   "name": "server",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  },
   "scripts": {
-    "start" : "nodemon index.js"
+    "start": "nodemon index.js",
+    "dev": "node index.js"
   },
   "keywords": [],
   "author": "",
